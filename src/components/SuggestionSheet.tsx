@@ -15,6 +15,7 @@ import type { Course } from "AppModels";
 import CourseCard from "./CourseCard";
 import { AuroraBackground } from "./ui/aurora-background";
 import { Skeleton } from "./ui/skeleton";
+import { useNavigate } from "react-router-dom";
 
 interface SuggestionSheetProps {
   isOpen: boolean;
@@ -29,6 +30,7 @@ const SuggestionSheet: React.FC<SuggestionSheetProps> = ({
 }) => {
   const { courses } = useSelector(selectCourseStateInfo);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Giả lập thời gian loading (2 giây)
@@ -129,7 +131,7 @@ const SuggestionSheet: React.FC<SuggestionSheetProps> = ({
                 variant="outline"
                 size="lg"
                 onClick={() => {
-                  window.location.href = "/products";
+                  navigate("/products");
                   onOpenChange(false);
                 }}
                 className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300"
